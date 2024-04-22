@@ -17,6 +17,7 @@ mongoose.connect('mongodb://localhost:27017/mediplus_db', {
 .catch(err => console.error('MongoDB connection error:', err));
 
 import users from "./routes/users.js"
+import patients from "./routes/patients.js"
 
 app.use(bodyParser.json());
 
@@ -27,5 +28,6 @@ app.get('/',(req,res) => {
 
 // Routes
 app.use('/users', users);
+app.use('/patients', patients);
 
 app.listen(PORT,()=> console.log(`server runnig on http://localhost:${PORT}`));
