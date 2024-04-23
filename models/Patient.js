@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
 
+// Define the gender as an enum
+const gender = ['male','female'];
+
 const patientSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  age : {type: String,required:true},
-  gender :{type:String, required:true},
-  mobile : {type: String , required:true},
-  address : {type: String, required:true},
-  careTaker :{type:String, required:true}
+  name: { type: String, required:true },
+  age : {type: Number},
+  gender :{type:String,  enum: gender },
+  mobile : {type: Number },
+  address : {type: String},
+  careTaker :{type:String}
 });
 
 const Patient = mongoose.model('Patient', patientSchema);

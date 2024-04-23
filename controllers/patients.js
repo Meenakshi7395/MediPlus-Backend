@@ -6,10 +6,11 @@ export const createPatient = async (req, res) => {
       console.log(req.body)
       const newPatient = new Patient(req.body);
       await newPatient.save();
+      // res.status(201).json({"success":true,"message":"Patients Created",patient:newPatient});
       console.log(newPatient)
       res.json({"success":true,"message":"Patient Added",patient:newPatient});
     } catch (error) {
-      res.json({"success":false, "message": error.message });
+      res.json({"success":false, "message": error.message, errors:[]});
     }
   };
   
