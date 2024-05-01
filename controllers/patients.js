@@ -17,7 +17,7 @@ export const createPatient = async (req, res) => {
   // Get all patients
   export const getAllPatients = async (req, res) => {
     try {
-      const patients = await Patient.find();
+      const patients = await Patient.find().populate('incidents');
       res.json({"success":true,"message":"Patients Data Found",patients:patients});
     } catch (error) {
       res.status(500).json({"success":false, "message": error.message });
@@ -28,11 +28,11 @@ export const createPatient = async (req, res) => {
   export const getPatientById = async (req, res) => {
     // console.log("hello")
     try {
-      const patient = await Patient.findById(req.params.id);
+      const patient = await Patient.findById(req.params.id).populate('incidents');
       if (!patient) {
         return res.status(404).json({ "success":false,"message" : 'Patient not found' });
       }
-      res.json({"success":true,"message":"Patient's Data Found",patients:patient});
+      res.json({"success":true,"message":"Patient's Data Found",patient:patient});
     } catch (error) {
       res.status(500).json({"success":false, "message": error.message,errors:[] });
     }
@@ -48,7 +48,7 @@ export const createPatient = async (req, res) => {
       if (!patient) {
         return res.status(404).json({ message: 'Patient not found' });
       }
-      res.json({"success":true,"message":"Patient's Data Found",patients:patient});
+      res.json({"success":true,"message":"Patient's Data Found",patient:patient});
     } catch (error) {
       res.json({"success":false, "message": error.message, errors:[]});
     }

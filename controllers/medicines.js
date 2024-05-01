@@ -6,7 +6,7 @@ export const createMedicine = async (req, res) => {
       console.log(req.body)
       const newMedicine = new Medicine(req.body);
       await newMedicine.save();
-      console.log(newMedicine)
+      // console.log(newMedicine)
       res.json({"success":true,"message":"Medicine Added", medicine:newMedicine});
     } catch (error) {
       res.json({"success":false, "message": error.message, errors:[]});
@@ -17,7 +17,7 @@ export const createMedicine = async (req, res) => {
   export const getAllMedicines = async (req, res) => {
     try {
       const medicines = await Medicine.find();
-      res.json({"success":true,"message":"Medicines Data Found",medicines:medicines});
+      res.json({"success":true,"message":"Medicines Data Found", medicines:medicines});
     } catch (error) {
       res.status(500).json({"success":false, "message": error.message });
     }
@@ -29,9 +29,9 @@ export const createMedicine = async (req, res) => {
     try {
       const medicine = await Medicine.findById(req.params.id);
       if (!medicine) {
-        return res.status(404).json({ "success":false,"message" : 'Patient not found' });
+        return res.status(404).json({ "success":false,"message" : 'Medicine not found' });
       }
-      res.json({"success":true,"message":"Medicine's Data Found",medicines:medicine});
+      res.json({"success":true,"message":"Medicine's Data Found",medicine:medicine});
     } catch (error) {
       res.status(500).json({"success":false, "message": error.message,errors:[] });
     }
