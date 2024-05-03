@@ -24,7 +24,7 @@ export const createIncident = async (req, res) => {
       const incidents = await Incident.find().populate('patient');  // each incident will be populated with the details of patient
       res.json({"success":true,"message":"Incidents Data Found", incidents:incidents});
     } catch (error) {
-      res.status(500).json({"success":false, "message": error.message });
+      res.json({"success":false, "message": error.message });
     }
   };
 
@@ -32,13 +32,13 @@ export const createIncident = async (req, res) => {
   export const getIncidentById = async (req, res) => {
     // console.log("hello")
     try {
-      const incident = await Incident.findById(req.params.id);
+      const incident = await Incident.findById(req.params.id).populate('patient');
       if (!incident) {
-        return res.status(404).json({ "success":false,"message" : 'Incident not found' });
+        return res.json({ "success":false,"message" : 'Incident not found' });
       }
       res.json({"success":true,"message":"Incident's Data Found",incident:incident});
     } catch (error) {
-      res.status(500).json({"success":false, "message": error.message,errors:[] });
+      res.json({"success":false, "message": error.message,errors:[] });
     }
   };
   
@@ -48,7 +48,7 @@ export const createIncident = async (req, res) => {
     const incident = await Incident.findByIdAndUpdate(req.params.id, req.body, { new: true });
       console.log(incident);
       if (!incident) {
-        return res.status(404).json({ message: 'Incident not found' });
+        return res.json({ message: 'Incident not found' });
       }
       res.json({"success":true,"message":"Incident's Data Found", incidents:incident});
     } catch (error) {
@@ -61,11 +61,11 @@ export const createIncident = async (req, res) => {
     try {
       const incident = await Incident.findByIdAndDelete(req.params.id);
       if (!incident) {
-        return res.status(404).json({ message: 'Incident not found' });
+        return res.json({ message: 'Incident not found' });
       }
       res.json({"success":true,"message":"Incident's record deleted successfully",incidents:incident});
     } catch (error) {
-      res.status(500).json({"success":false, "message": error.message, errors:[]});
+      res.json({"success":false, "message": error.message, errors:[]});
     }
   };
   
