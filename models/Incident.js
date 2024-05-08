@@ -10,8 +10,9 @@ const incidentSchema = new mongoose.Schema({
   chiefComplaint :{type:String},
   diagnosis : {type: String },
   doctor : {type:String},
-  status :{type:String,enum:status}
+  status :{type:String,enum:status},
   
+  OPDs: [{ type: Schema.Types.ObjectId, ref: 'OPD' }],
 });
 
 const Incident = mongoose.model('Incident', incidentSchema);
