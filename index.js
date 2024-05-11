@@ -21,6 +21,7 @@ import patients from "./routes/patients.js"
 import medicines from "./routes/medicines.js"
 import incidents from "./routes/incidents.js"
 import OPDs from "./routes/OPDs.js"
+import prescriptions from "./routes/prescription.js"
 
 app.use(bodyParser.json());
 
@@ -34,6 +35,7 @@ app.use('/users', users);
 app.use('/patients', patients);
 app.use('/medicines', medicines);
 app.use('/incidents', incidents);
-app.use('/OPDs', OPDs)
+app.use('/OPDs', OPDs);
+app.use('/prescriptions', prescriptions);
 
 app.listen(PORT,()=> console.log(`server runnig on http://localhost:${PORT}`));

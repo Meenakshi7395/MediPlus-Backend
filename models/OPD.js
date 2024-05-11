@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Prescriptions from "../models/Prescription.js";
 const Schema = mongoose.Schema;
 
 const status = ['New','Active','Hold','Closed'];
@@ -18,8 +19,8 @@ const OPDSchema = new mongoose.Schema({
   allergy:{type:String},
   fees:{type:String},
   bill:{type:String},
-  
-});
+  prescriptions: [{ type: Schema.Types.ObjectId, ref: 'Prescription' }]
+} );
 
 const OPD = mongoose.model('OPD', OPDSchema);
 

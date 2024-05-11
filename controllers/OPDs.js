@@ -1,5 +1,6 @@
 import OPD from "../models/OPD.js";
 import Incident from "../models/Incident.js";
+import Medicine from "../models/Medicine.js";
 
 // add OPD
 export const createOPD = async (req, res) => {
@@ -40,10 +41,15 @@ export const createOPD = async (req, res) => {
   export const getOPDById = async (req, res) => {
     try {
       const opd = await OPD.findById(req.params.id).populate({
-        path: 'incident', // Populate the incident field
+        path: 'incident', // Populate the incident field in OPDs
         populate: {
           path: 'patient', // Populate the patient field within incident
-          model: 'Patient' // Reference to Patient model
+          model: 'Patient', // Reference to Patient model
+        }
+      }).populate({path:'prescriptions',   //populate the prescription field in OPDs
+        populate:{
+          path:'medicine',       //populate the medicine field within prescription
+          model:'Medicine'       // reference to Medicine model
         }
       })
       if (!opd) {
