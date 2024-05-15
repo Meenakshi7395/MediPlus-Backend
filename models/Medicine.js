@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Define the category as an enum
-const category = ['Tablet','Capsule','Injection','Syrup','Drop','Ointmet'];
+const category = ['TAB','CAP','INJ','Syrup','Drop','Ointmet'];
 
 const medicineSchema = new mongoose.Schema({
   brandName: { type: String, required:true },
