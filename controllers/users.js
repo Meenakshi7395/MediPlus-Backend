@@ -74,13 +74,13 @@ export const createUser = async (req, res) => {
   export const loginUser = async (req, res) => {
     try {
       const {email,password} = req.body;
-      const user = await User.find({email:email,password:password});
+      const user = await User.findOne({email:email,password:password});
       if (!user) {
        return res.json({ message: 'User Not found' });
       }
       
       const accessToken = jwt.sign({id:user._id,role:user.role}, accessTokenSecrete);
-    res.json({accessToken});
+    res.json({success:true,message:"login success",accessToken:accessToken,user:user});
 
     } catch (error) {
       res.sendStatus(500);

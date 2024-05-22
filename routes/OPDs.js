@@ -1,5 +1,6 @@
 import express from "express";
 import validator from 'express-validator';
+import { authicateJWT } from "../controllers/users.js";
 
 const  { body } = validator;
 
@@ -9,10 +10,10 @@ import { createOPD, deleteOPD, getAllOPDs, getOPDById, updateOPD } from "../cont
 
 
 // Routes
-router.get('/', getAllOPDs);
-router.post('/', createOPD);
-router.get('/:id', getOPDById);
-router.patch('/:id',updateOPD);
-router.delete('/:id', deleteOPD);
+router.get('/',authicateJWT, getAllOPDs);
+router.post('/',authicateJWT, createOPD);
+router.get('/:id',authicateJWT, getOPDById);
+router.patch('/:id', authicateJWT,updateOPD);
+router.delete('/:id',authicateJWT, deleteOPD);
 
 export default router;

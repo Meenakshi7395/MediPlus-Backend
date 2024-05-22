@@ -1,5 +1,6 @@
 import express from "express";
 import validator from 'express-validator';
+import { authicateJWT } from "../controllers/users.js";
 
 const  { body } = validator;
 
@@ -9,10 +10,10 @@ import { createMedicine, deleteMedicine, getAllMedicines, getMedicineById, updat
 
 
 // Routes
-router.get('/', getAllMedicines);
-router.post('/', createMedicine);
-router.get('/:id', getMedicineById);
-router.patch('/:id',updateMedicines);
-router.delete('/:id', deleteMedicine);
+router.get('/',authicateJWT, getAllMedicines);
+router.post('/',authicateJWT, createMedicine);
+router.get('/:id',authicateJWT, getMedicineById);
+router.patch('/:id',authicateJWT,updateMedicines);
+router.delete('/:id',authicateJWT, deleteMedicine);
 
 export default router;
