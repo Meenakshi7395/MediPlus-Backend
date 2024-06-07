@@ -7,11 +7,10 @@ export const createUser = async (req, res) => {
       console.log(req.body)
       const newUser = new User(req.body);
       await newUser.save();
-      //res.status(201).json({"success":true,"message":"Users Created",user:newUser});
       console.log(newUser)
       res.json({"success":true,"message":"Users Created",user:newUser});
     } catch (error) {
-      res.json({"success":false, "message": error.message });
+      res.json({"success":false, "message": error.message , errors:[]});
     }
   };
   
@@ -21,7 +20,7 @@ export const createUser = async (req, res) => {
       const users = await User.find();
       res.json({"success":true,"message":"Users Data Found",users:users});
     } catch (error) {
-      res.status(500).json({"success":false, "message": error.message });
+      res.json({"success":false, "message": error.message });
     }
   };
 
@@ -31,11 +30,11 @@ export const createUser = async (req, res) => {
     try {
       const user = await User.findById(req.params.id);
       if (!user) {
-        return res.status(404).json({ "success":false,"message" : 'User not found' });
+        return res.json({ "success":false,"message" : 'User not found' });
       }
       res.json({"success":true,"message":"Users Data Found",users:user});
     } catch (error) {
-      res.status(500).json({"success":false, "message": error.message,errors:[] });
+      res.json({"success":false, "message": error.message,errors:[] });
     }
   };
   
@@ -60,12 +59,11 @@ export const createUser = async (req, res) => {
   export const deleteUser = async (req, res) => {
     try {
       const user = await User.findByIdAndDelete(req.params.id);
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+      if (!user) {json({ message: 'User not found' });
       }
       res.json({ message: 'User deleted successfully' });
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      res.json({ message: error.message });
     }
   };
   

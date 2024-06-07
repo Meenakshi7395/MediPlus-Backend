@@ -63,7 +63,7 @@ export const createPatient = async (req, res) => {
       }
       res.json({"success":true,"message":"Patient's record deleted successfully",patients:patient});
     } catch (error) {
-      res.status(500).json({"success":false, "message": error.message, errors:[]});
+      res.json({"success":false, "message": error.message, errors:[]});
     }
   };
   

@@ -11,7 +11,7 @@ import { createUser,getAllUsers,getUserById,updateUser,deleteUser} from "../cont
 // Routes
 router.post('/login', loginUser);
 router.get('/',authicateJWT, getAllUsers);
-router.post('/', authicateJWT,createUser);
+router.post('/',createUser);
 router.get('/:id',authicateJWT, getUserById);
 router.patch('/:id',authicateJWT,updateUser);
 router.delete('/:id',authicateJWT, deleteUser);

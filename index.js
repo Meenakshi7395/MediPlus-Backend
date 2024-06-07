@@ -9,12 +9,21 @@ const PORT = 5000;
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mediplus_db', {
+// mongoose.connect('mongodb://localhost:27017/mediplus_db', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// })
+// .then(() => console.log('MongoDB connected'))
+// .catch(err => console.error('MongoDB connection error:', err));
+
+mongoose.connect('mongodb+srv://mediplus_user:mediplus_user@mediplus.6px1ycb.mongodb.net/mediplus_db', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
+
+
 
 import users from "./routes/users.js"
 import patients from "./routes/patients.js"
