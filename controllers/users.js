@@ -77,7 +77,10 @@ export const createUser = async (req, res) => {
        return res.json({ message: 'User Not found' });
       }
       
-      const accessToken = jwt.sign({id:user._id,role:user.role}, accessTokenSecrete);
+      const accessToken = jwt.sign({id:user._id,role:user.role 
+        // iat: Math.floor(Date.now() / 1000), // Issued at time
+        // exp: Math.floor(Date.now() / 1000) + (60*5) // Expires in 
+      }, accessTokenSecrete);
     res.json({success:true,message:"login success",accessToken:accessToken,user:user});
 
     } catch (error) {
