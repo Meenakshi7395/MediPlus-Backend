@@ -34,9 +34,25 @@ import prescriptions from "./routes/prescription.js"
 
 app.use(bodyParser.json());
 
+var homePage = `
+<h1>Welcome to Mediplus</h1>
+<h2>A Patient management system with following main features</h2>
+<ul>
+<li>Patient Record Management</li>
+<li>A Patient can visit the clinic in several medical conditions, the Option of managing Incidents groups all the visits for each case of patient.</li>
+<li>For a given incident there might be several OPDs of the patient, this is possible with our OPD management system which also allows to print the digital prescription in PDF </li>
+<li>We also have provided a feature to manage the medicines available in the clinic. The same are visible during adding prescriptions.
+</ul>
+<p>This is Backend API System for Mediplus and is integerated in Frontend Developed in React</p>
+<p>Please click <a href="https://mediplus-frontend.onrender.com">here</a> For Better User Experience</p>
+<p>Thanks for checking it out</p>
+`
+
+
 app.get('/',(req,res) => {
-    res.send({name:"Hello world"})
-    // res.send("Hello world");
+    // res.send({name:"Hello world"})
+    res.send(homePage);
+
 });
 
 // Routes
