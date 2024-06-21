@@ -7,6 +7,8 @@ export const createOPD = async (req, res) => {
     try {
       console.log(req.body)
       const newOPD = new OPD(req.body);
+      
+      console.log(newOPD);
 
       // read the incident
       const incident = await Incident.findById(req.body.incident)
