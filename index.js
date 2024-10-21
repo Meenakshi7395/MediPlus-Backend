@@ -54,7 +54,7 @@ app.get('/',(req,res) => {
     res.send(homePage);
 
 });
-
+  
 // Routes
 app.use('/users', users);
 app.use('/patients', patients);
